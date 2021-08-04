@@ -15,6 +15,7 @@ class csvDataRead {
 
   val df: DataFrame = spark.read.format("csv").option("header","true").csv("resource/")
   df.createOrReplaceTempView("basicdata")
+
   df.show()
 
    private def getFromDF[A](id: Int): Future[Boolean] = {
@@ -40,7 +41,6 @@ class csvDataRead {
 
 
  private def updateTable(min_ret:Int):Future[Boolean]={
-    import spark.implicits._
     Future{
     val finaldf = df.union(Seq((min_ret, "D"+min_ret.toString)).toDF("id", "Name"))
     finaldf.createOrReplaceTempView("basicdata")

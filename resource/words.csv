@@ -1,4 +1,12 @@
-id,Name
-1,"A"
-2,"B"
-3,"C"
+@Sai – this task will now be yours going forward. As Narendra stated, we need to validate the number of null/blank episode numbers and titles between DEV and PROD. 
+Next step : Compare ref.tms_all_program in Dev(Full DB file) with Production(Update File) and see if how many records have episode numbers in available in Dev which are missing in Prod. 
+values to validate after full load: prgm_episode_number prgm_seriesid epi_title 
+
+
+Hi Kyle, I have loaded Full DB file in DEV. /product/app_data/AM_SPARK/data/landing/mas_ncs_api/archive/on_tv_programs_v22-db_20210404.xml.gz.20210405203210 
+
+Next step : Compare ref.tms_all_program in Dev(Full DB file) with Production(Update File) and see if how many records have episode numbers in available in Dev which are missing in Prod. Note: I took backup of the loaded data in below HDFS path thinking if the Dev tidal is running any of the tms job /product/app_data/AM_SPARK/datacore/data/ref/tms_all_program/main_null_episode 
+
+
+select * from docs
+where content IS NULL OR CONTENT = ''
